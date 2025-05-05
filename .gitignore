@@ -1,0 +1,11 @@
+# Ignore below mentioned file extensions and directories
+*.exe
+*.pem
+.terraform/
+Terraform-Infra/.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+*.log
+*.zip
+*.tar.gz
