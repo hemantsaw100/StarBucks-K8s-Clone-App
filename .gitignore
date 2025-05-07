@@ -1,6 +1,7 @@
 # Ignore below mentioned file extensions and directories
 *.exe
 *.pem
+*.ppk
 .terraform/
 Terraform-Infra/.terraform/
 *.tfstate
