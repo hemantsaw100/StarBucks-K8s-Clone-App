@@ -7,13 +7,14 @@ pipeline{
     environment {
         SCANNER_HOME=tool 'sonar-scanner'
     }
+    
     stages {
         stage('clean workspace'){
             steps{
                 cleanWs()
             }
         }
-        stage('Checkout from Git'){
+        stage('Git Checkout'){
             steps{
                 git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/hemantsaw100/StarBucks-K8s-Clone-App.git'
             }
@@ -75,7 +76,7 @@ pipeline{
             emailext (
                 subject: "Pipeline ${buildStatus}: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
-                    <p>This is a Jenkins starbucks CICD pipeline status.</p>
+                    <p>Starbucks App Jenkins CICD Pipeline Status.</p>
                     <p>Project: ${env.JOB_NAME}</p>
                     <p>Build Number: ${env.BUILD_NUMBER}</p>
                     <p>Build Status: ${buildStatus}</p>
