@@ -44,6 +44,25 @@ resource "aws_eip" "eip_for_jenkins_server" {
   }
 }
 
+// Create EC2 Instance for SonarQube Server
+resource "aws_instance" "sonarqube_server" {
+  ami           = var.sonarqube_server_ami
+  instance_type = var.sonarqube_instance_type
+  associate_public_ip_address = "true" // Associate a public IP address
+  key_name      = "starbucks-project" // Key pair name for SSH access
+  security_groups = [aws_security_group.starbucks_project_sg.name] // Attach the security group to the instance
+
+  root_block_device {
+    volume_size = var.sonarqube_root_block_device_size
+    volume_type = "gp3" // General Purpose SSD
+    delete_on_termination = true // Delete the volume when the instance is terminated
+  }
+
+  tags = {
+    Name = "SonarQube-Server"
+  }
+}
+
 
 // Security Group for Starbucks Project
 // This security group allows inbound traffic on specified ports and all outbound traffic
